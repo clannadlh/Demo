@@ -1,0 +1,23 @@
+import time
+from throttle import Throttle
+
+# 设置TPS和每秒交易限制
+tps = 100
+per_second_limit = 10
+
+# 初始化速率限制器
+throttle = Throttle(tps=tps, rate_limit=per_second_limit)
+
+# 模拟请求的到来
+requests = 90
+arrival_interval = 0.01  # 10毫秒
+
+for i in range(requests):
+    # 限制速率
+    throttle.throttle()
+
+    # 处理请求
+    print(f"Request {i+1} processed at {time.time()}")
+
+    # 模拟请求到来的时间间隔
+    time.sleep(arrival_interval)
